@@ -25,13 +25,9 @@ public class weather {
         Response resp = RestAssured.get(url);
         String timestamp = resp.jsonPath().get("data[0].timestamp_utc");
         String wheather = resp.jsonPath().get("data[0].weather").toString();
-        String a = resp.getBody().asString();
 
-        System.out.println(a);
-        System.out.println(timestamp);
-        System.out.println(wheather);
         Assert.assertEquals(resp.getStatusCode(), 200);
-        Assert.assertEquals(timestamp, "2022-10-20T08:00:00");
-        Assert.assertTrue(a.contains("data"));
+        Assert.assertTrue(timestamp.contains("2022-10"));
+        Assert.assertTrue(wheather.contains("description"));
     }
 }
